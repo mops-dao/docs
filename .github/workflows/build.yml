@@ -6,6 +6,7 @@ on:
 permissions:
   contents: read # to checkout
   actions: write # to upload artifact
+  packages: read # to install packages
 
 jobs:
   build:
