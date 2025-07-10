@@ -42,6 +42,13 @@ jobs:
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
+          echo "Files: $FILES"
+
+          FILES2=$(ls -1 .dfx/ic/canisters/*/*.wasm.gz)
+          echo "files2=$FILES2" >> $GITHUB_OUTPUT
+
+          echo "Files2: $FILES2"
+          echo "${{ steps.files.outputs.files2 | replace(' ', '\n') }}"
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -52,3 +59,4 @@ jobs:
           prerelease: false
           files: |
             ${{ steps.files.outputs.files }}
+            ${{ steps.files.outputs.files2 | replace(' ', '\n') }}
