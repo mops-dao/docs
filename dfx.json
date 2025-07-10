@@ -1,0 +1,29 @@
+{
+	"$schema": "./dfx.schema.json",
+	"version": 1,
+	"canisters": {
+		"docs": {
+			"type": "assets",
+			"build": ["npm run build"],
+			"frontend": {
+				"entrypoint": "docs/build/index.html"
+			},
+			"source": ["docs/build/"]
+		}
+	},
+	"dfx": "0.27.0",
+	"networks": {
+		"local_": {
+			"type": "ephemeral",
+			"bind": "127.0.0.1:4943"
+		},
+		"staging": {
+			"type": "persistent",
+			"providers": ["https://icp0.io"]
+		},
+		"ic": {
+			"type": "persistent",
+			"providers": ["https://icp0.io"]
+		}
+	}
+}
