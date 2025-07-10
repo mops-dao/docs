@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: 24
           cache: 'npm'
+          token: ${{ github.token }}
       - run: npm install
 
       - name: Build
