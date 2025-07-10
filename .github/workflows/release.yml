@@ -48,7 +48,6 @@ jobs:
           echo "files2=$FILES2" >> $GITHUB_OUTPUT
 
           echo "Files2: $FILES2"
-          echo "${{ steps.files.outputs.files2 | replace(' ', '\n') }}"
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -59,4 +58,4 @@ jobs:
           prerelease: false
           files: |
             ${{ steps.files.outputs.files }}
-            ${{ steps.files.outputs.files2 | replace(' ', '\n') }}
+            ${{ steps.files.outputs.files2}}
