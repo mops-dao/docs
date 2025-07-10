@@ -4,7 +4,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read # to checkout
+  contents: write # create tag + release
   actions: write # to upload artifact
   packages: read # to install packages
 
