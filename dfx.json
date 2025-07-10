@@ -9,6 +9,14 @@
 				"entrypoint": "build/index.html"
 			},
 			"source": ["build/"]
+		},
+		"docs2": {
+			"type": "assets",
+			"build": ["npm run build"],
+			"frontend": {
+				"entrypoint": "build/index.html"
+			},
+			"source": ["build/"]
 		}
 	},
 	"dfx": "0.27.0",
