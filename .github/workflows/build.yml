@@ -17,8 +17,10 @@ jobs:
         with:
           node-version: 24
           cache: 'npm'
-          token: ${{ github.token }}
       - run: npm install
+
+      - name: Set npm auth token
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
 
       - name: Build
         run: dfx build --all --ic
