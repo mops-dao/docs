@@ -30,7 +30,7 @@ jobs:
       - name: Create release tag (lightweight)
         id: tag
         run: |
-          TAG="${GITHUB_SHA}"
+          TAG="${GITHUB_SHA:0:12}"
           git tag -f $TAG
           git push -f origin $TAG
           echo "tag=$TAG" >> $GITHUB_OUTPUT
