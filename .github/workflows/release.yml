@@ -30,10 +30,16 @@ jobs:
       - name: Create release tag (lightweight)
         id: tag
         run: |
-          TAG="r-${GITHUB_SHA:0:10}"
+          TIMESTAMP=$(date +%Y%m%d%H%M)
+          TAG="r-${TIMESTAMP}-${GITHUB_SHA:0:7}"
           git tag $TAG
           git push origin $TAG
           echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: File list
+        run: |
+          FILES=$(ls -1 .dfx/ic/canisters/*/*.wasm.gz)
+          echo "files=$FILES" >> $GITHUB_OUTPUT
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -43,4 +49,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            .dfx/ic/canisters/**/*.wasm.gz
+            ${{ steps.files.outputs.files }}
