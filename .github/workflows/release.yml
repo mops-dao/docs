@@ -30,18 +30,17 @@ jobs:
       - name: Create release tag (lightweight)
         id: tag
         run: |
-          TAG="${GITHUB_SHA:0:12}"
-          git tag -f $TAG
-          git push -f origin $TAG
+          TAG="r-${GITHUB_SHA:0:10}"
+          git tag $TAG
+          git push origin $TAG
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          name: "Automated release ${{ steps.tag.outputs.tag }}"
+          name: "Release ${{ steps.tag.outputs.tag }}"
           draft: false
           prerelease: false
           files: |
             .dfx/ic/canisters/*/*.wasm.gz
-            .dfx/ic/canisters/*/*.wasm
