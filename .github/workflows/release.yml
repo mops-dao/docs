@@ -44,7 +44,7 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
           echo "Files: $FILES"
 
-          FILES2=$(ls -1 .dfx/ic/canisters/*/*.wasm.gz)
+          FILES2=$(ls .dfx/ic/canisters/*/*.wasm.gz)
           echo "files2=$FILES2" >> $GITHUB_OUTPUT
 
           echo "Files2: $FILES2"
