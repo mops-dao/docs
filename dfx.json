@@ -6,9 +6,9 @@
 			"type": "assets",
 			"build": ["npm run build"],
 			"frontend": {
-				"entrypoint": "docs/build/index.html"
+				"entrypoint": "build/index.html"
 			},
-			"source": ["docs/build/"]
+			"source": ["build/"]
 		}
 	},
 	"dfx": "0.27.0",
