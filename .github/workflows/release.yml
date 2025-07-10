@@ -43,4 +43,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            .dfx/ic/canisters/*/*.wasm.gz
+            .dfx/ic/canisters/**/*.wasm.gz
