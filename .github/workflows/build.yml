@@ -10,7 +10,7 @@ permissions:
   # packages: read # to install packages
 
 jobs:
-  build-release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
