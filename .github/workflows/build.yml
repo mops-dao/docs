@@ -1,10 +1,11 @@
-name: Build and release
+name: Build
 on:
   push:
-    branches: [release]
+    branches: [main]
+  pull_request:
 
 permissions:
-  contents: write # create tag + release
+  contents: read # to checkout
   # actions: write # to upload artifact
   # packages: read # to install packages
 
@@ -27,15 +28,6 @@ jobs:
       - name: Build
         run: dfx build --all --ic
 
-      - name: Create release tag (lightweight)
-        id: tag
-        run: |
-          TIMESTAMP=$(date +%Y%m%d%H%M)
-          TAG="r-${TIMESTAMP}-${GITHUB_SHA:0:7}"
-          git tag $TAG
-          git push origin $TAG
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-
       - name: File list
         id: files
         run: |
@@ -44,13 +36,3 @@ jobs:
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           echo "Files: $FILES"
-
-      - name: Create release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.tag.outputs.tag }}
-          name: "Release ${{ steps.tag.outputs.tag }}"
-          draft: false
-          prerelease: false
-          files: |
-            ${{ steps.files.outputs.files }}
